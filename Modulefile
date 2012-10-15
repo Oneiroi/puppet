@@ -1,9 +1,11 @@
-name 'percona'
+name    'oneiroi-percona'
 version '0.0.1'
-source 'git://github.com/Oneiroi/puppet.git -b percona'
-author 'David Busby'
-summary 'Puppet module for Percona'
-description 'Module for installation and configuration of Percona'
-project_page 'https://github.com/Oneiroi/puppet/tree/percona'
+source 'UNKNOWN'
+author 'oneiroi'
+license 'Apache License, Version 2.0'
+summary 'UNKNOWN'
+description 'UNKNOWN'
+project_page 'UNKNOWN'
 
-#Dependencies if any:
+## Add dependencies, if any:
+# dependency 'username/name', '>= 1.2.0'
