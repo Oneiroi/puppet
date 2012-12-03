@@ -1,6 +1,6 @@
 # == Class: percona
 #
-# Full description of class percona here.
+# Provides installation and configuration support for Percona Serer and Percona XtraDB cluster.
 #
 # === Parameters
 #

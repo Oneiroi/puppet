@@ -8,7 +8,7 @@ class percona::config {
     $pid_file                       = '/var/lib/mysql/data/mysql.pid',
     $key_buffer_size                = '32M',
     $myisam_recover                 = 'FORCE,BACKUP',
-    $max_allow_packet               = '16M',
+    $max_allowed_packet             = '16M',
     $skip_name_resolve              = true,
     $innodb                         = 'FORCE',
     $datadir                        = '/var/lib/mysql/data/',

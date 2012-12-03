@@ -17,25 +17,27 @@ socket                         = <%= socket %>
 pid_file                       = <%= pid_file %>
 
 # MyISAM #
-key_buffer_size                = 32M
-myisam_recover                 = FORCE,BACKUP
+key_buffer_size                = <%= key_buffer_size %> 
+myisam_recover                 = <%= myisam_recover %>
 
 # SAFETY #
-max_allowed_packet             = 16M
+max_allowed_packet             = <%= max_allowed_packed %>
 max_connect_errors             = 1000000
+<% if skip_name_resolve %>
 skip_name_resolve
-innodb                         = FORCE
+<% end %>
+innodb                         = <%= innodb %>
 
 # DATA STORAGE #
-datadir                        = /var/lib/mysql/data/
+datadir                        = <%= datadir %>
 
 # BINARY LOGGING #
-log_bin                        = /var/lib/mysql/data/mysql-bin
-expire_logs_days               = 14
-sync_binlog                    = 1
+log_bin                        = <%= log_bin %>
+expire_logs_days               = <%= expire_log_days %>
+sync_binlog                    = <%= sync_binlog %>
 
 # CACHES AND LIMITS #
-tmp_table_size                 = 32M
+tmp_table_size                 = <%= tmp_table_size %> 
 max_heap_table_size            = 32M
 query_cache_type               = 0
 query_cache_size               = 0
