@@ -35,5 +35,10 @@ class percona::config {
     $slow_query_log                 = 1,
     $slow_query_log_file            = '/var/lib/mysql/data/mysql-slow.log',
   ) {
+    file{ '/etc/my.cnf':
+      content => template('server/my.cnf'),
+      ensure  => present,
+      notify  => Service['mysql'],
+     }
   }
 }
