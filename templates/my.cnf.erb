@@ -60,3 +60,26 @@ log_error                      = <%= log_error %>
 log_queries_not_using_indexes  = <%= log_queries_not_using_indexes %>
 slow_query_log                 = <%= slow_query_log %>
 slow_query_log_file            = <%= slow_query_log_file %>
+
+<% if pxc %>
+<% if wsrep_cluster_address.is_a? Array%>
+wsrep_cluster_address          = gcomm://<% wsrep_cluster_address.do |addr| %><%="#{addr},"%>
+<% elsif wsrep_cluster_adress != '' %>
+wsrep_cluster_address          = gcomm://<%= wsrep_cluster_address %>
+<% end %>
+wsrep_cluster_provider         = <%= wsrep_cluster_provider %>
+wsrep_cluster_name             = <%= wsrep_cluster_name %>
+wsrep_cluster_method           = <%= wsrep_cluster_method %>
+wsrep_node_name                = <%= wsrep_node_name %>
+wsrep_sst_method               = <%= wsrep_sst_method %>
+wsrep_sst_auth                 = <%= wsrep_sst_auth %>
+
+#if the startup script fails to find your primary ip, specify it here
+#i.e. will fail on fedora >= 16 due to emN and p3pN naming of eth devices.
+wsrep_sst_receive_address      = <%= wsrep_sst_receive_address %>
+wsrep_node_address             = <%= wsrep_node_address %>
+
+wsrep_notify_cmd               = <%= wsrep_notify_cmd %>
+wsrep_replicate_myisam         = <%= wsrep_replicate_myisam %>
+log_slave_updates
+<% end %>
