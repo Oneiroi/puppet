@@ -6,8 +6,9 @@
 #
 # Document parameters here.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
+# [*pxc*]
+#   true or false, to specify if pxc (Percona XtraDB Cluster) to to be installed and configured, 
+#   defaults to Percona server if false.
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
 # === Variables
@@ -24,18 +25,33 @@
 # === Examples
 #
 #  class { percona:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#    pxc => true,
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# David Busby <oneiroi@fedoraproject.org>
 #
 # === Copyright
 #
-# Copyright 2011 Your name here, unless otherwise noted.
+# Copyright 2012 David Busby, unless otherwise noted.
 #
 class percona {
-
-
+  case $operatingsystem {
+   /(centos|fedora|redhat|scientific)/ :{
+    $my_cnf_path  = '/etc/my.cnf'
+    $my_data_dir  = '/var/lib/mysql'
+    $my_sock_file = '/var/lib/mysql/mysql.sock'
+    $my_pid_file  = '/var/lib/mysql/mysql.pid'
+    $my_err_log   = '/var/log/mysql-error.log'
+   }
+   /(debian|ubuntu): {
+    $my_cnf_path  = '/etc/mysql/my.cnf'
+    $my_data_dir  = '/var/lib/mysqld'
+    $my_sock_file = '/var/run/mysqld/mysql.sock'
+    $my_pid_file  = '/var/run/mysqld/mysql.pid'
+    $my_err_log   = '/var/log/mysql/error.log'
+   }
+   default: { fail "${operatingsystem} is not supported :(" }
+  } 
 }
