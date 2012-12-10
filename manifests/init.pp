@@ -9,7 +9,6 @@
 # [*pxc*]
 #   true or false, to specify if pxc (Percona XtraDB Cluster) to to be installed and configured, 
 #   defaults to Percona server if false.
-#   e.g. "Specify one or more upstream ntp servers as an array."
 #
 # === Variables
 #
@@ -45,7 +44,7 @@ class percona {
     $my_pid_file  = '/var/lib/mysql/mysql.pid'
     $my_err_log   = '/var/log/mysql-error.log'
    }
-   /(debian|ubuntu): {
+   /(debian|ubuntu)/: {
     $my_cnf_path  = '/etc/mysql/my.cnf'
     $my_data_dir  = '/var/lib/mysqld'
     $my_sock_file = '/var/run/mysqld/mysql.sock'
