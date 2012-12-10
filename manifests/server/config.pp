@@ -34,6 +34,18 @@ class percona::config {
     $log_queries_not_using_indexes  = 1,
     $slow_query_log                 = 1,
     $slow_query_log_file            = '/var/lib/mysql/data/mysql-slow.log',
+    $pxc                            = false,
+    $wsrep_cluster_address          = 'gcomm://'
+    $wsrep_cluster_provider         = '/usr/lib64/libgalera_smm.so',
+    $wsrep_cluster_name             = 'pxc',
+    $wsrep_node_name                = $hostname,
+    $wsrep_sst_method               = 'xtrabackup', 
+    $wsrep_sst_auth                 = 'root:changeme'
+    $wsrep_sst_receive_address      = $ip,
+    $wsrep_node_address             = $ip,
+    $wsrep_notify_cmd               = '',
+    $wsrep_replicate_myisam         = 0
+
   ) {
     file{ '/etc/my.cnf':
       content => template('server/my.cnf'),
