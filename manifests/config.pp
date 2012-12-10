@@ -44,10 +44,11 @@ class percona::config {
     $wsrep_sst_receive_address      = $ip,
     $wsrep_node_address             = $ip,
     $wsrep_notify_cmd               = '',
-    $wsrep_replicate_myisam         = 0
+    $wsrep_replicate_myisam         = 0,
+    $config_path                    = '/etc/my.cnf',
 
   ) {
-    file{ '/etc/my.cnf':
+    file{ $config_path:
       content => template('server/my.cnf'),
       ensure  => present,
       notify  => Service['mysql'],
