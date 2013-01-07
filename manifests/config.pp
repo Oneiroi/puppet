@@ -9,6 +9,7 @@ class percona::config {
     $key_buffer_size                = '32M',
     $myisam_recover                 = 'FORCE,BACKUP',
     $max_allowed_packet             = '16M',
+    $max_connect_errors             = 1000000,
     $skip_name_resolve              = true,
     $innodb                         = 'FORCE',
     $datadir                        = '/var/lib/mysql/data/',
@@ -35,12 +36,12 @@ class percona::config {
     $slow_query_log                 = 1,
     $slow_query_log_file            = '/var/lib/mysql/data/mysql-slow.log',
     $pxc                            = false,
-    $wsrep_cluster_address          = 'gcomm://'
+    $wsrep_cluster_address          = 'gcomm://',
     $wsrep_cluster_provider         = '/usr/lib64/libgalera_smm.so',
     $wsrep_cluster_name             = 'pxc',
     $wsrep_node_name                = $hostname,
     $wsrep_sst_method               = 'xtrabackup', 
-    $wsrep_sst_auth                 = 'root:changeme'
+    $wsrep_sst_auth                 = 'root:changeme',
     $wsrep_sst_receive_address      = $ip,
     $wsrep_node_address             = $ip,
     $wsrep_notify_cmd               = '',
@@ -49,9 +50,9 @@ class percona::config {
 
   ) {
     file{ $config_path:
-      content => template('server/my.cnf'),
+      content => template('percona/my.cnf.erb'),
       ensure  => present,
-      notify  => Service['mysql'],
+      #notify  => Service['mysql'],
      }
   }
 }
